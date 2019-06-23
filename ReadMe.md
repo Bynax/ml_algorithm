@@ -7,7 +7,7 @@
 
 ### 进度 #
 
-- [x] 感知机
+- [x] [感知机](./perceptron/ReadMe.md)
 
 - [ ] k-NN
 - [ ] 朴素贝叶斯
