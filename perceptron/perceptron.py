@@ -48,7 +48,7 @@ class Perceptron(object):
         模型的训练方法，根据输入数据更新模型的weights属性
         :param training_inputs: 输入特征
         :param labels: 输出的标签
-        :return:
+        :return: self 遵循sklearn设计原则
         """
 
         # 确保训练样本数量和标签一致
@@ -59,3 +59,4 @@ class Perceptron(object):
                 prediction = self._predict(inputs)  # 预测inputs的值
                 self.weights[1:] += self.learning_rate * (label - prediction) * inputs  # 更新weights
                 self.weights[0] += self.learning_rate * (label - prediction)  # 更新bias
+        return self
