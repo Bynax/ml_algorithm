@@ -1,5 +1,8 @@
 # <center>Perceptron</center>
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default">
+</script>
+
 ### Two classes classify
 
 The simplest representation of a linear discriminant function is obtained by taking a linear function of the input vector so that 
