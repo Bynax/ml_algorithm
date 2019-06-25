@@ -40,7 +40,9 @@ class KNNClassifier:
             "must fit before predict"
         assert X_predict.shape[1] == self._X_train.shape[1], \
             "the feature number of X_predict must be equal to X_train"
+        # 对X_predict的每一个元素进行预测
         y_predict = [self._predict(x) for x in X_predict]
+        # 返回预测结果
         return np.array(y_predict)
 
     def _predict(self, x):
@@ -51,11 +53,16 @@ class KNNClassifier:
         """
         assert x.shape[0] == self._X_train.shape[1], \
             "the feature number of x must equal to X_train"
+        # 计算x与_X_train中每一个点的距离
         distances = [sqrt(np.sum((x_train - x) ** 2)) for x_train in self._X_train]
+        # np.argsort方法 将索引按照distances进行排序
         nearest = np.argsort(distances)
+        # 根据x的索引找到对应的_y_train
         topK_y = [self._y_train[i] for i in nearest[:self.k]]
+        # 使用Counter封装
         votes = Counter(topK_y)
 
+        # 返回最频繁的label
         return votes.most_common(1)[0][0]
 
     def __repr__(self):
