@@ -8,11 +8,11 @@
 
 ### 进度 #
 
-- ####[感知机](./perceptron/ReadMe.pdf)
+- #### [感知机](./perceptron/ReadMe.pdf)
 
-  - [x] 简介
-  - [x] 代码
-  - [ ] 收敛性证明
+- [x] 简介
+- [x] 代码
+- [ ] 收敛性证明
 
 - #### [KNN](./knn/ReadMe.md)
 
