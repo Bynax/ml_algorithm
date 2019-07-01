@@ -3,6 +3,8 @@
 
 
 import numpy as np
+from matplotlib import pyplot as plt
+from
 
 
 class Perceptron(object):
@@ -10,17 +12,17 @@ class Perceptron(object):
     单层感知机模型的简单实现
     """
 
-    def __init__(self, nums_input, learning_rate=0.01, nums_iter=10):
+    def __init__(self, nums_feature, learning_rate=0.01, nums_iter=10):
         """
         初始化Perceptron对象
-        :param nums_inputs: 样本的数量
+        :param nums_feature: 样本特征
         :param learning_rate: 学习率
         :param num_iter: 最多迭代次数
         """
         self.learning_rate = learning_rate
         self.nums_iter = nums_iter
-        self.nums_input = nums_input
-        self.weights = np.zeros(nums_input + 1)  # 因为将bias当作w0，因此weights要不输入多一维
+        self.nums_input = nums_feature
+        self.weights = np.zeros(nums_feature + 1)  # 因为将bias当作w0，因此weights要不输入多一维
         self._X_train = None
         self._Y_train = None
 
@@ -54,6 +56,8 @@ class Perceptron(object):
         # 确保训练样本数量和标签一致
         assert training_inputs.shape[0] == labels.shape[0]
 
+        self._X_train = training_inputs
+        self._Y_train = labels
         for _ in range(self.nums_iter):
             for inputs, label in zip(training_inputs, labels):
                 prediction = self._predict(inputs)  # 预测inputs的值
@@ -63,4 +67,10 @@ class Perceptron(object):
 
 
 if __name__ == '__main__':
-    pass
+    x = [[1, 1], [1, 0], [0, 1], [0, 0]]
+    y = [1, 0, 0, 0]
+    x = np.array(x)
+    y = np.array(y)
+    perceptron = Perceptron(2)
+    perceptron.fit(x, y)
+    print(perceptron.weights)
