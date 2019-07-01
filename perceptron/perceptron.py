@@ -60,3 +60,7 @@ class Perceptron(object):
                 self.weights[1:] += self.learning_rate * (label - prediction) * inputs  # 更新weights
                 self.weights[0] += self.learning_rate * (label - prediction)  # 更新bias
         return self
+
+
+if __name__ == '__main__':
+    pass
