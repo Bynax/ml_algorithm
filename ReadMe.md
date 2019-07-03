@@ -8,6 +8,8 @@
 
 ### 进度 #
 
+- #### [numpy介绍](./numpy/Readme.md)
+
 - #### [感知机](./perceptron/ReadMe.pdf)
   - [x] 简介
   - [x] 代码
@@ -17,7 +19,7 @@
 
   - [ ] 简介
   - [x] 代码
-  - [ ] KD-tree
+  - [x] KD-tree
 
 - #### 朴素贝叶斯
 
