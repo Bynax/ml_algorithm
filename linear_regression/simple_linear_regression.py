@@ -4,7 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
-from measure.regression_measure import RegressionMeasure
+from utils.regression_measure import RegressionMeasure
 
 
 class SimpleLinearRegression:
