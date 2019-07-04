@@ -10,6 +10,18 @@
 
 - #### [numpy介绍](./numpy/Readme.md)
 
+- #### [机器学习评估指标](./utils/ReadMe.pdf)
+
+  - [ ] 训练集测试集划分
+  - [x] 分类模型衡量指标
+  - [x] 回归模型衡量指标
+
+- #### [线性回归](./linear_regression/ReadMe.md)
+
+  - [x] 简单线性回归
+  - [x] 多元线性回归代码
+  - [ ] 多元线性回归正规方程解推导
+
 - #### [感知机](./perceptron/ReadMe.pdf)
   - [x] 简介
   - [x] 代码
