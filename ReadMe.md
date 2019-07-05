@@ -9,7 +9,6 @@
 ### 进度 #
 
 - #### [numpy介绍](./numpy/Readme.md)
-
 - #### [机器学习评估指标](./utils/ReadMe.pdf)
 
   - [x] [训练集测试集划分](./utils/model_selection.py)
@@ -24,6 +23,7 @@
   - [ ] 多元线性回归正规方程解推导
 
 - #### [感知机](./perceptron/ReadMe.pdf)
+
   - [x] 简介
   - [x] [代码](./perceptron/perceptron.py)
   - [ ] 收敛性证明
@@ -31,9 +31,7 @@
 - #### [KNN](./knn/ReadMe.md)
 
   - [ ] 简介
-
   - [x] [代码](./knn/knn.py)
-
   - [x] [KD-tree](./knn/kd_tree.py)
 
 - #### [Logistic Regression](./logistic_regression/ReadMe.md)
@@ -49,7 +47,6 @@
 - #### 朴素贝叶斯
 
   - 简介
-
   - 代码
 
 - #### 决策树
