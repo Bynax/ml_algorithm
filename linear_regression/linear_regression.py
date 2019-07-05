@@ -2,8 +2,6 @@
 # Created by bohuanshi on 2019/7/3
 import numpy as np
 from utils.regression_measure import RegressionMeasure
-from utils.model_selection import train_test_split
-from sklearn import datasets
 import matplotlib.pyplot as plt
 
 
@@ -32,102 +30,62 @@ class LinearRegression:
         self.coef_ = self._theta[1:]
         return self
 
-    # def fit_gd(self, X_train, y_train, learning_rate=0.01, n_iters=1e4):
-    #     """
-    #     使用梯度下降的方法来训练Linear Regression模型
-    #     :param X_train: 训练数据集特征
-    #     :param y_train: 训练数据集的结果
-    #     :param learning_rate: 学习率
-    #     :param iter: 最大迭代次数
-    #     :return:
-    #     """
-    #     assert X_train.shape[0] == y_train.shape[0], "the size of X_train must be equal to the size of y_train"
-    #
-    #     def J(theta, X_b, y):
-    #         """
-    #         计算损失函数
-    #         :param theta:
-    #         :param X_b:
-    #         :param y:
-    #         :return:
-    #         """
-    #         try:
-    #             return np.sum((y - X_b.dot(theta)) ** 2) / len(y)
-    #         except:
-    #             return float('inf')
-    #
-    #     def dJ(theta, X_b, y):
-    #         """
-    #         计算梯度
-    #         :param theta: 参数
-    #         :param X_b: 训练数据集
-    #         :param y:
-    #         :return:
-    #         """
-    #         res = np.empty(len(theta))
-    #         res[0] = np.sum(X_b.dot(theta) - y)
-    #         for i in range(1, len(theta)):
-    #             res[i] = (X_b.dot(theta) - y).dot(X_b[:, i])
-    #         return res * 2 / len(X_b)
-    #
-    #     def gradient_descent(X_b, y, initial_theta, learning_rate=0.01, n_iters=1e4, epsilon=1):
-    #
-    #         """
-    #         进行梯度下降
-    #         :param X_b:
-    #         :param initial_theta:
-    #         :param learning_rate:
-    #         :param n_iters:
-    #         :param epsilon:
-    #         :return:
-    #         """
-    #         theta = initial_theta
-    #         cur_iter = 0
-    #
-    #         while cur_iter < n_iters:
-    #             gradient = dJ(theta, X_b, y)
-    #             last_theta = theta
-    #             theta = theta - learning_rate * gradient
-    #             if abs(J(theta, X_b, y) - J(last_theta, X_b, y)) < epsilon:
-    #                 break
-    #             cur_iter += 1
-    #         return theta
-    #
-    #     X_b = np.hstack([np.ones((len(X_train), 1)), X_train])
-    #     initial_theta = np.zeros(X_b.shape[1])
-    #     self._theta = gradient_descent(X_b, y_train, initial_theta)
-    #     self.interception_ = self._theta[0]
-    #     self.coef_ = self._theta[1:]
-    #     return self
-
-    def fit_gd(self, X_train, y_train, eta=0.01, n_iters=1e4):
-        """根据训练数据集X_train, y_train, 使用梯度下降法训练Linear Regression模型"""
-        assert X_train.shape[0] == y_train.shape[0], \
-            "the size of X_train must be equal to the size of y_train"
+    def fit_gd(self, X_train, y_train, learning_rate=0.01, n_iters=1e4):
+        """
+        使用梯度下降的方法来训练Linear Regression模型
+        :param X_train: 训练数据集特征
+        :param y_train: 训练数据集的结果
+        :param learning_rate: 学习率
+        :param iter: 最大迭代次数
+        :return:
+        """
+        assert X_train.shape[0] == y_train.shape[0], "the size of X_train must be equal to the size of y_train"
 
         def J(theta, X_b, y):
+            """
+            计算损失函数
+            :param theta:
+            :param X_b:
+            :param y:
+            :return:
+            """
             try:
                 return np.sum((y - X_b.dot(theta)) ** 2) / len(y)
             except:
                 return float('inf')
 
         def dJ(theta, X_b, y):
+            """
+            计算梯度
+            :param theta: 参数
+            :param X_b: 训练数据集
+            :param y:
+            :return:
+            """
             res = np.empty(len(theta))
             res[0] = np.sum(X_b.dot(theta) - y)
             for i in range(1, len(theta)):
                 res[i] = (X_b.dot(theta) - y).dot(X_b[:, i])
             return res * 2 / len(X_b)
 
-        def gradient_descent(X_b, y, initial_theta, eta, n_iters=1e4, epsilon=1e-8):
-
+        def gradient_descent(X_b, y, initial_theta, learning_rate, n_iters=1e4, epsilon=1e-8):
+            """
+            进行梯度下降
+            :param X_b:
+            :param initial_theta:
+            :param learning_rate:
+            :param n_iters:
+            :param epsilon:
+            :return:
+            """
             theta = initial_theta
             cur_iter = 0
 
             while cur_iter < n_iters:
                 gradient = dJ(theta, X_b, y)
                 last_theta = theta
-                theta = theta - eta * gradient
-                if (abs(J(theta, X_b, y) - J(last_theta, X_b, y)) < epsilon):
+                theta = theta - learning_rate * gradient
+                if abs(J(theta, X_b, y) - J(last_theta, X_b, y)) < epsilon:
                     break
 
                 cur_iter += 1
@@ -136,7 +94,7 @@ class LinearRegression:
 
         X_b = np.hstack([np.ones((len(X_train), 1)), X_train])
         initial_theta = np.zeros(X_b.shape[1])
-        self._theta = gradient_descent(X_b, y_train, initial_theta, eta, n_iters)
+        self._theta = gradient_descent(X_b, y_train, initial_theta, learning_rate, n_iters)
 
         self.interception_ = self._theta[0]
         self.coef_ = self._theta[1:]
@@ -179,6 +137,7 @@ if __name__ == '__main__':
     X = x.reshape(-1, 1)
     plt.scatter(x, y)
     plt.show()
+
     regression.fit_gd(X, y)
     print(regression.coef_)
     print(regression.interception_)
