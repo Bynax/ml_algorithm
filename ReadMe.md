@@ -12,26 +12,39 @@
 
 - #### [机器学习评估指标](./utils/ReadMe.pdf)
 
-  - 训练集测试集划分
-  - 分类模型衡量指标
-  - 回归模型衡量指标
+  - [x] [训练集测试集划分](./utils/model_selection.py)
+  - [x] [分类模型衡量指标](./utils/classify_measure.py)
+  - [x] [回归模型衡量指标](./utils/regression_measure.py)
+  - [x] [决策边界绘制](./utils/decision_boundary.py)
 
 - #### [线性回归](./linear_regression/ReadMe.md)
 
-  - [x] 简单线性回归
-  - [x] 多元线性回归代码
+  - [x] [简单线性回归](./linear_regression/simple_linear_regression.py)
+  - [x] [多元线性回归代码](./linear_regression/linear_regression.py)
   - [ ] 多元线性回归正规方程解推导
 
 - #### [感知机](./perceptron/ReadMe.pdf)
   - [x] 简介
-  - [x] 代码
+  - [x] [代码](./perceptron/perceptron.py)
   - [ ] 收敛性证明
 
 - #### [KNN](./knn/ReadMe.md)
 
   - [ ] 简介
-  - [x] 代码
-  - [x] KD-tree
+
+  - [x] [代码](./knn/knn.py)
+
+  - [x] [KD-tree](./knn/kd_tree.py)
+
+- #### [Logistic Regression](./logistic_regression/ReadMe.md)
+
+  - [ ] 简介
+  - [x] [代码](./logistic_regression/logistic_regression.py)
+
+- #### [PCA](./pca/ReadMe.md)
+
+  - [ ] [简介]()
+  - [ ] [代码](./pca/pca.py)
 
 - #### 朴素贝叶斯
 
