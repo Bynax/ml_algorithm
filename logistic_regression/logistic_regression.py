@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from utils.classify_measure import ClassifyMeasure
 from sklearn import datasets
 from utils import model_selection
+from utils.decision_boundary import DecisionBoundary
 
 
 class LogisticRegression:
@@ -196,7 +197,7 @@ if __name__ == '__main__':
         1]
 
     # 数据及决策边界的可视化
+    DecisionBoundary.plot_decision_boundary(logistic_regression,axis=[4,7.5,1.5,4.5])
     plt.scatter(X[y == 0, 0], X[y == 0, 1], color='red')
     plt.scatter(X[y == 1, 0], X[y == 1, 1], color='blue')
-    plt.plot(x1_plot, x2_plot)
     plt.show()
