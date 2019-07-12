@@ -8,7 +8,7 @@
 
 ### 进度 #
 
-- #### [numpy介绍](./numpy/Readme.md)
+- #### [numpy介绍](./numpy/ReadMe.md)
 - #### [机器学习评估指标](./utils/ReadMe.pdf)
 
   - [x] [训练集测试集划分](./utils/model_selection.py)
