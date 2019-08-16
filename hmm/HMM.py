@@ -2,12 +2,12 @@
 # Created by bohuanshi on 2019/8/13
 import numpy as np
 
-
 class HMM:
 
     def __init__(self, A=None, B=None, pi=None):
         """
         简单的HMM的实现
+
 
         Parameters
         -----------------
@@ -110,56 +110,6 @@ class HMM:
                     + backward[s_, t + 1]
                     for s_ in range(self.N)
                 ])
-
-    def decode(self, obs):
-        """
-        HMM中的decode问题的实现，给定一个模型与观测序列，计算出概率最大的隐状态序列。
-        利用Viterbi算法
-        :param obs: 观测序列
-        :return:
-        """
-
-        if obs.ndim == 1:
-            obs = obs.reshape(1, -1)  # 统一后面的处理方式
-
-        T = obs.shape[1]  # 每个可观测序列中包含的可观测变量的数目
-        I = obs.shape[0]  # 观测序列的数目
-
-        # 因为decode问题就是处理一个观测序列
-        if I != 1:
-            raise ValueError("Can only decode a single sequence (O.shape[0] must be 1)")
-
-        # 初始化 viterbi 和 back_pointer 矩阵
-        viterbi = np.zeros((self.N, T))
-        back_pointer = np.zeros((self.N, T)).astype(int)
-
-        # 初始状态
-        ot = obs[0, 0]
-        for s in range(self.N):
-            back_pointer[s, 0] = 0
-            viterbi[s, 0] = np.log(self.pi[s]) + np.log(self.B[s, ot])
-        # 一般情况，DP过程
-        for t in range(1, T):
-            ot = obs[0, t]
-            for s in range(self.N):
-                seq_probs = [
-                    viterbi[s_, t - 1]
-                    + np.log(self.A[s_, s])
-                    + np.log(self.B[s, ot])
-                    for s_ in range(self.N)
-                ]
-                viterbi[s, t] = np.max(seq_probs)
-                back_pointer[s, t] = np.argmax(seq_probs)
-
-        best_path_log_prob = viterbi[:, T - 1].max()
-        # 隐状态的回溯过程
-        pointer = viterbi[:, T - 1].argmax()
-        best_path = [pointer]
-        for t in reversed(range(1, T)):
-            pointer = back_pointer[pointer, t]
-            best_path.append(pointer)
-        best_path = best_path[::-1]
-        return best_path, best_path_log_prob
 
 
 def logsumexp(log_probs, axis=None):

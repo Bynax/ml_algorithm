@@ -87,6 +87,10 @@ $$
 
 [3.EM的理解](https://davidrosenberg.github.io/mlcourse/Archive/2016/Lectures/14a.EM-algorithm.pdf)
 
+[4.简单的代码实现](http://sofasofa.io/tutorials/gmm_em/)
+
+
+
 
 
 
