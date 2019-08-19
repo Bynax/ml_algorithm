@@ -65,6 +65,10 @@ $$
 w_{i} \leftarrow w_{i}-\eta \sum_{n}-\left(\hat{y}^{n}-f_{w, b}\left(x^{n}\right)\right) x_{i}^{n}
 $$
 
+### 损失函数详细推导
+
+![loss funciton](./pics/4.png)
+
 ### 二分类到多分类
 
 - OvR(One vs Rest)
