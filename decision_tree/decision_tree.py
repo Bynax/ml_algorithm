@@ -28,7 +28,7 @@ class Leaf:
 
 class DecisionTree:
 
-    def __init__(self, classifier=True, max_depth=None, n_feats=None, criterion='"entroy', seed=None):
+    def __init__(self, classifier=True, max_depth=None, n_feats=None, criterion="entropy", seed=None):
         """
 
         :param classifier:
@@ -61,8 +61,8 @@ class DecisionTree:
                   otherwise the set of target value of examples.
         :return:
         """
-        self.n_classes = max(Y) + 1 if self.classifier else None
-        self.n_feats = X.shape[1] if not self.n_feats else min(self.n_feats, X.shape[1])
+        self.n_classes = max(Y) + 1 if self.classifier else None  # 有几个类
+        self.n_feats = X.shape[1] if not self.n_feats else min(self.n_feats, X.shape[1])  # 有多少个特征
         self.root = self._grow(X, Y)
 
     def predict(self, X):
@@ -136,10 +136,9 @@ class DecisionTree:
 
         return split_idx, split_thresh
 
-    def _impurity_gain(self, X, Y, split_thresh, feat_values):
+    def _impurity_gain(self, Y, split_thresh, feat_values):
         """
 
-        :param X:
         :param Y:
         :param split_thresh:
         :param feat_values:
@@ -152,7 +151,7 @@ class DecisionTree:
         elif self.criterion == "mse":
             loss = mse
 
-        paraent_loss = loss(Y)
+        parent_loss = loss(Y)
 
         left = np.argwhere(feat_values <= split_thresh).flatten()
         right = np.argwhere(feat_values > split_thresh).flatten()
@@ -162,10 +161,10 @@ class DecisionTree:
 
         n = len(Y)
         n_l, n_r = len(left), len(right)
-        e_l, e_r = loss(Y[left]), loss(Y[right])
+        e_l, e_r = entropy(Y[left]), entropy(Y[right])
         child_loss = (n_l / n) * e_l + (n_r / n) * e_r
 
-        ig = paraent_loss - child_loss
+        ig = parent_loss - child_loss
         return ig
 
     def _traverse(self, X, node, prob=False):
@@ -207,7 +206,7 @@ def entropy(y):
 
 def gini(y):
     """
-
+    calculate the gini index
     :param y:
     :return:
     """
