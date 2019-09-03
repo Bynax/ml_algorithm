@@ -67,7 +67,7 @@ class DecisionTree:
 
     def predict(self, X):
         """
-
+        对于给定的X进行预测
         :param X:
         :return:
         """
@@ -84,26 +84,26 @@ class DecisionTree:
 
     def _grow(self, X, Y):
         """
-
-        :param X:
-        :param Y:
-        :return:
+        构造决策树
+        :param X: 数据的特征向量
+        :param Y: 数据的标签
+        :return: 决策树构造后的根节点
         """
-        if (len(set(Y)) == 1):
+        if (len(set(Y)) == 1):  # 弱纯度达到最大，返回叶子节点
             if self.classifier:
                 prob = np.zeros(self.n_classes)
                 prob[Y[0]] = 1.0
                 return Leaf(prob)
             return Leaf(Y[0])
-        if self.depth >= self.max_depth:
-            v = np.mean(Y, axis=0)
+        if self.depth >= self.max_depth:  # 若达到最大高度，返回叶子节点
+            v = np.mean(Y, axis=0)  # 对于回归树，返回该节点上所有值的均值
             if self.classifier:
-                v = np.bincount(Y, minlength=self.n_classes) / len(Y)
+                v = np.bincount(Y, minlength=self.n_classes) / len(Y)  # 对于分类树，返回概率值
             return Leaf(v)
 
-        N, M = X.shape
-        self.depth += 1
-        feat_idxs = np.random.choice(M, self.n_feats, replace=False)
+        N, M = X.shape  # N->num M->features
+        self.depth += 1  # 更新树的高度
+        feat_idxs = np.random.choice(M, self.n_feats, replace=False)  #
 
         feat, thresh = self._segment(X, Y, feat_idxs)
         l = np.argwhere(X[:, feat] <= thresh).flatten()
@@ -115,10 +115,11 @@ class DecisionTree:
 
     def _segment(self, X, Y, feat_idxs):
         """
-
-        :param X:
-        :param Y:
-        :param feat_idxs:
+        给定训练样本，给定数据的特征，对于每一个特征寻找threshold
+        看哪个特征可以将样本分割得更好，就选用该样本作为分割的标准
+        :param X: 样本特征
+        :param Y: 样本标签
+        :param feat_idxs: 特征集合
         :return:
         """
         best_gain = -np.inf
@@ -186,7 +187,7 @@ class DecisionTree:
 
 def mse(y):
     """
-
+    calculate the mse
     :param y:
     :return:
     """
@@ -195,7 +196,7 @@ def mse(y):
 
 def entropy(y):
     """
-
+    calculate the entropy
     :param y:
     :return:
     """
