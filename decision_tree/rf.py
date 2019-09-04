@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Created by bohuanshi on 2019/9/3
 import numpy as np
-from decision_tree.decision_tree import DecisionTree
+from decision_tree import DecisionTree
 
 
 def bootstrap_sample(X, Y):
