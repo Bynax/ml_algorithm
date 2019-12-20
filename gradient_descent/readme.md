@@ -42,6 +42,14 @@ $$
 
 ### 常见Gradient descent
 
+- 批量梯度下降法（Batch Gradient Descent）
+
+- 随机梯度下降法（Stochastic Gradient Descent）
+
+- 小批量梯度下降法（Mini-batch Gradient Descent）
+
+### 梯度下降法和最小二乘法
+
 
 
 ### TIPS
